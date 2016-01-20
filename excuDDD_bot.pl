@@ -6,13 +6,11 @@ use warnings;
 use utf8;
 use Data::Dumper;
 use Encode;
-
-package MyBot;
 use base qw(Bot::BasicBot);
 
+package MyBot;
 
 binmode (STDOUT, ":utf8");
-
 
 my $driver   = "SQLite";
 my $database = "excuDDD.db";
@@ -53,17 +51,17 @@ sub said {
 		my $kiitos=$kiitos[rand @kiitos];		return "$kiitos $nick";
          
 		}	
-         
 	}
 	
-	
+
 	if($message->{body} eq "!select"){
 		
 		my $stmt = qq(SELECT DISTINCT URL FROM LINKKI;);
 		my $sth = $dbh->prepare($stmt);
 		my $rv = $sth->execute() or die $DBI::errstr;
 			
-		if($rv < 0){
+		if($rv < 0)
+		{
 			print $DBI::errstr;
 		}
 						
@@ -72,8 +70,6 @@ sub said {
 				channel =>"#yourchannelhere",
 				body=>"$row[0] \n",
 			);
-			
-			
 		}
 		return undef;
 	}
